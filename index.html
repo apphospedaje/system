@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Gestión de Hospedajes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    header {
+      padding: 1rem 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #2563eb;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      background-color: #e0f2fe;
+    }
+    .hero h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      text-align: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .hero ul {
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+    .hero ul li {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    section.features {
+      padding: 4rem 2rem;
+      background-color: #ffffff;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .features ul {
+      max-width: 600px;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0;
+    }
+    .features li {
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.875rem;
+      background-color: #f3f4f6;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HospedajeApp</div>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Gestiona tu hospedaje fácilmente desde tu celular</h1>
+      <p>Controla todas tus operaciones desde una sola app.</p>
+      <ul>
+        <li>Check-in y check-out de huéspedes</li>
+        <li>Control de reservas</li>
+        <li>Registro de pagos</li>
+        <li>Notificaciones automáticas</li>
+        <li>Reportes y exportación de datos</li>
+      </ul>
+      <div class="form-container">
+        <form id="download-form">
+          <input type="email" placeholder="Ingresa tu correo" required>
+          <button type="submit">Recibir enlace de descarga</button>
+        </form>
+      </div>
+    </section>
+    <section class="features">
+         
+    <!--<h2></h2>-->    
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 HospedajeApp. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.getElementById("download-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const emailInput = this.querySelector("input[type=email]");
+      const email = emailInput.value.trim();
+      if (email) {
+        // Aquí puedes hacer una llamada a backend o usar servicios como Mailchimp, etc.
+        alert("Gracias, el enlace ha sido enviado a " + email);
+        emailInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
