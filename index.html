@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="description" content="App de gestión para hospedajes y hoteles. Controla reservas, pagos, y más desde tu celular. Fácil, rápida y eficiente.">
-  <meta name="keywords" content="sistema de hospedaje, gestión hotelera, software para hoteles, hospedajes, sistema hotelero">
-  <meta name="author" content="AppHospedaje">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="App de gestión para hospedajes y hoteles. Controla reservas, pagos, y más desde tu celular. Fácil, rápida y eficiente." />
+  <meta name="keywords" content="sistema de hospedaje, gestión hotelera, software para hoteles, hospedajes, sistema hotelero" />
+  <meta name="author" content="AppHospedaje" />
   <title>App de Gestión de Hospedajes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -20,7 +18,7 @@
     header {
       padding: 1rem 2rem;
       background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
     .logo {
       font-weight: 700;
@@ -64,7 +62,6 @@
       border-radius: 0.5rem;
       font-size: 1rem;
     }
-    /* Botón general */
     button {
       background-color: #2563eb;
       color: white;
@@ -74,19 +71,14 @@
       border-radius: 0.5rem;
       cursor: pointer;
     }
-
-    /* Botón inicial ancho */
     #show-form-button {
       width: 100%;
     }
-
-    /* Botón "Solicitar" más pequeño y centrado */
     #download-form button {
       width: auto;
       margin: 0 auto;
       display: block;
     }
-
     section.features {
       padding: 4rem 2rem;
       background-color: #ffffff;
@@ -122,7 +114,7 @@
   <main>
     <section class="hero">
       <h1>Gestiona tu hospedaje fácilmente desde tu celular</h1>
-      <p>Controla todas tus operaciones desde una sola App</p>
+      <p>Controla todas tus operaciones desde una sola app.</p>
       <ul>
         <li>Registra ingreso y salida de huéspedes</li>
         <li>Registro de pagos</li>
@@ -131,9 +123,9 @@
         <li>Reportes y exportación de datos</li>
       </ul>
       <div class="form-container">
-        <button id="show-form-button">Solicitar descarga de prueba gratuita</button>
+        <button id="show-form-button">Solicitar enlace de descarga</button>
         <form id="download-form" style="display: none; margin-top: 1rem;">
-          <input type="email" placeholder="Ingresa tu correo" required>
+          <input type="email" name="user_email" id="user_email" placeholder="Ingresa tu correo" required />
           <button type="submit">Solicitar</button>
         </form>
       </div>
@@ -146,7 +138,13 @@
     &copy; 2025 HospedajeApp. Todos los derechos reservados.
   </footer>
 
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
+    (function () {
+      emailjs.init("r4wHhsU70pMGNOIBg"); // Tu Public Key
+    })();
+
     const showFormButton = document.getElementById("show-form-button");
     const form = document.getElementById("download-form");
 
@@ -155,14 +153,16 @@
       form.style.display = "block";
     });
 
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function (event) {
       event.preventDefault();
-      const emailInput = form.querySelector("input[type=email]");
-      const email = emailInput.value.trim();
-      if (email) {
-        alert("Gracias, el enlace ha sido enviado a " + email);
-        emailInput.value = "";
-      }
+
+      emailjs.sendForm("service_9ff8sol", "template_h42u061", form)
+        .then(function () {
+          alert("Gracias, el enlace ha sido enviado a tu correo.");
+          form.reset();
+        }, function (error) {
+          alert("Error al enviar: " + JSON.stringify(error));
+        });
     });
   </script>
 </body>
